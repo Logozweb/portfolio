@@ -1,0 +1,266 @@
+:root{
+  --bg:#0f1115; --surface:#161922; --surface-2:#1d2130; --text:#e5e7eb; --muted:#9aa4b2; --primary:#00e0ff; --accent:#8a7dff; --danger:#ff5470; --success:#22c55e; --warning:#f59e0b; --shadow:0 8px 28px rgba(0,0,0,.35); --radius:14px; --radius-sm:10px; --radius-lg:18px; --sidebar-w:320px; --content-max:1100px; --section-gap:64px
+}
+body[data-theme="light"]{--bg:#fbfbfd; --surface:#ffffff; --surface-2:#f4f6fb; --text:#111827; --muted:#4b5563; --primary:#2563eb; --accent:#14b8a6; --danger:#ef4444; --success:#16a34a; --warning:#f59e0b; --shadow:0 8px 28px rgba(0,0,0,.12)}
+*{box-sizing:border-box}
+html,body{height:100%;width:100%;overflow-x:hidden}
+img,svg{max-width:100%;height:auto}
+body{margin:0;background:radial-gradient(1200px 800px at -10% -10%, rgba(0,224,255,.06), transparent 60%),radial-gradient(1200px 800px at 110% -10%, rgba(138,125,255,.06), transparent 60%),var(--bg);color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,"Apple Color Emoji","Segoe UI Emoji";line-height:1.6;word-wrap:break-word}
+.app{display:grid;grid-template-columns:var(--sidebar-w) 1fr;min-height:100vh;max-width:1600px;margin:0 auto}
+.topbar{display:none;position:sticky;top:0;z-index:50;padding:10px 16px;background:var(--surface);border-bottom:1px solid rgba(255,255,255,.06);align-items:center;justify-content:space-between}
+.brand{display:inline-flex;align-items:center;font-weight:800;letter-spacing:.3px;text-decoration:none;color:var(--text);font-size:18px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:980px){.topbar .brand{max-width:calc(100% - 110px)}}
+.toggles{display:flex;gap:10px}
+.icon-btn{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;background:var(--surface-2);color:var(--text);border:1px solid rgba(255,255,255,.08);cursor:pointer}
+.icon-btn:active{transform:scale(.98)}
+.sidebar{position:sticky;top:0;height:100vh;padding:18px 14px;background:linear-gradient(180deg,var(--surface),var(--surface-2));border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column}
+.profile{display:grid;grid-template-rows:auto auto auto auto 1fr auto;align-content:stretch;justify-items:center;row-gap:10px;background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);flex:1 1 auto;overflow:hidden}
+.avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));padding:3px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.avatar>img{width:100%;height:100%;display:block;border-radius:50%;background:var(--surface-2);object-fit:cover}
+.name{font-weight:800;font-size:22px;letter-spacing:.2px}
+.role{color:var(--muted);font-weight:600;font-size:13px !important;letter-spacing:.3px}
+.socials{display:flex;gap:10px}
+.socials a{width:28px !important;height:28px !important;display:grid !important;place-items:center !important;border-radius:8px !important;background:var(--surface) !important;color:var(--accent) !important;border:1px solid rgba(255,255,255,.12) !important;text-decoration:none !important;box-shadow:var(--shadow) !important;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease !important}
+.socials a svg{width:16px !important;height:16px !important;min-width:16px !important;min-height:16px !important;max-width:16px !important;max-height:16px !important}
+.socials a:hover{transform:translateY(-2px) !important;box-shadow:0 10px 22px rgba(0,0,255,.3) !important;border-color:#3a7fdb33 !important}
+/* Force social icon sizes with maximum specificity */
+.sidebar .socials a{width:28px !important;height:28px !important;min-width:28px !important;min-height:28px !important;max-width:28px !important;max-height:28px !important}
+.sidebar .socials a svg{width:16px !important;height:16px !important;min-width:16px !important;min-height:16px !important;max-width:16px !important;max-height:16px !important;flex-shrink:0 !important}
+.sidebar .profile .socials a{width:28px !important;height:28px !important;min-width:28px !important;min-height:28px !important;max-width:28px !important;max-height:28px !important}
+.sidebar .profile .socials a svg{width:16px !important;height:16px !important;min-width:16px !important;min-height:16px !important;max-width:16px !important;max-height:16px !important;flex-shrink:0 !important}
+.sidebar-actions{display:grid;gap:12px;margin-top:10px;width:100%;align-self:end}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 16px;border-radius:12px;border:1px solid transparent;cursor:pointer;background:linear-gradient(135deg,var(--primary),var(--accent));color:#0a0a0a;font-weight:700;letter-spacing:.2px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;box-shadow:0 12px 24px rgba(0,224,255,.18)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(0,224,255,.28)}
+.btn-outline{background:transparent;color:var(--text);border-color:rgba(255,255,255,.12);box-shadow:var(--shadow)}
+.nav{order:-1;margin-top:12px;padding:10px;border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;overflow:hidden !important;position:absolute !important;left:-9999px !important;pointer-events:none !important;user-select:none !important}
+.nav a{display:block;padding:10px 12px;border-radius:10px;color:var(--text);text-decoration:none;font-weight:600;letter-spacing:.2px;border:1px solid transparent;transition:background .2s,color .2s,transform .2s,border-color .2s}
+.nav a:hover{background:var(--surface-2);transform:translateX(3px)}
+.nav a.active{border-color:rgba(255,255,255,.12);background:linear-gradient(90deg,rgba(0,224,255,.14),transparent 60%)}
+.content-nav{order:initial;margin:0 0 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;position:sticky;top:16px;z-index:10;background:var(--surface);padding:10px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.content-nav{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.content-nav a{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);text-decoration:none;color:var(--text);font-weight:700;flex:0 0 auto}
+.content-nav a.active{background:#142443;color:var(--heading);border-color:#27456f;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+/* Improve active contrast in light theme */
+body[data-theme="light"] .content-nav a{border-color:#d6e1ff}
+body[data-theme="light"] .content-nav a.active{background:#eaf2ff;border-color:#c7dcff;color:#0b1220;box-shadow:0 6px 16px rgba(0,0,0,.08)}
+/* Remove sticky positioning on mobile */
+@media (max-width:768px){
+  .content-nav{position:static !important;top:auto !important;display:none !important}
+  /* Force hide sidebar navigation on mobile - ULTRA FORCE */
+  .sidebar .nav{display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;overflow:hidden !important;position:absolute !important;left:-9999px !important;pointer-events:none !important;user-select:none !important}
+  .sidebar .nav *{display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;overflow:hidden !important;position:absolute !important;left:-9999px !important;pointer-events:none !important;user-select:none !important}
+}
+/* Tablet breakpoint - keep desktop layout until smaller screens */
+/* Ensure tablet displays like desktop (768px - 980px) */
+@media (min-width:769px) and (max-width:980px){
+  .app{grid-template-columns:var(--sidebar-w) 1fr}
+  .sidebar{position:sticky !important;top:0 !important;height:100vh !important;padding:22px 18px !important;background:linear-gradient(180deg,var(--surface),var(--surface-2)) !important;border-right:1px solid rgba(255,255,255,.06) !important;display:flex !important;flex-direction:column !important;align-items:flex-start !important;justify-content:flex-start !important}
+  .nav{order:-1;margin-top:12px;padding:10px;border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;overflow:hidden !important;position:absolute !important;left:-9999px !important;pointer-events:none !important;user-select:none !important}
+  .about-grid{grid-template-columns:1fr !important;gap:16px !important}
+  .grid-2{grid-template-columns:1fr !important;gap:14px !important}
+  .contact-grid{grid-template-columns:1fr !important;gap:14px !important}
+  .work-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .content{padding:24px 20px 60px;max-width:100%;width:100%}
+  /* Keep desktop navigation visible on tablet */
+  .content-nav{display:flex !important;position:sticky !important;top:16px !important}
+  /* Ensure proper spacing and layout on tablet */
+  .section-body{padding:18px}
+  .section-header{padding:18px 18px 0}
+  .stats{grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+  .stat{padding:16px;min-width:0}
+  .stat .num{font-size:28px}
+  .stat .label{font-size:12px}
+  /* Force content to fit screen width - prevent horizontal overflow */
+  .content{max-width:100% !important;overflow-x:hidden !important;box-sizing:border-box !important}
+  section{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .section-body{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .about-grid{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .grid-2{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .contact-grid{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .work-grid{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .card{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .stats{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .timeline{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .filters{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  .pagination{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  /* Ensure form elements don't overflow */
+  form{max-width:100% !important;overflow:hidden !important;box-sizing:border-box !important}
+  form input, form textarea{max-width:100% !important;box-sizing:border-box !important}
+  /* Force horizontal scroll prevention */
+  html, body{overflow-x:hidden !important}
+}
+
+@media (max-width:768px){
+  .app{grid-template-columns:1fr;padding-bottom:40px}
+  .sidebar{display:block;position:static;height:auto;width:100%;padding:20px 16px;background:var(--surface);border-right:none;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:20px}
+  .topbar{display:none}
+  .nav{display:none !important}
+  .about-grid{grid-template-columns:1fr !important;gap:16px !important}
+  .grid-2{grid-template-columns:1fr !important;gap:16px !important}
+  .contact-grid{grid-template-columns:1fr !important;gap:16px !important}
+  .content{padding:18px 16px 80px}
+  /* Fix horizontal navigation overflow - FORCE with !important */
+  .content-nav{overflow-x:auto !important;padding:8px !important;gap:8px !important;max-width:100% !important;width:100% !important}
+  .content-nav a{padding:6px 10px !important;font-size:13px !important;white-space:nowrap !important;min-width:auto !important;flex-shrink:0 !important}
+  /* Fix counters section overflow - FORCE with !important */
+  .stats{grid-template-columns:repeat(3,1fr) !important;gap:8px !important;margin-top:8px !important;max-width:100% !important;overflow:hidden !important}
+  .stat{padding:12px 8px !important;min-width:0 !important;overflow:hidden !important}
+  .stat .num{font-size:20px !important}
+  .stat .label{font-size:11px !important}
+  /* Ensure content fits mobile width - FORCE with !important */
+  .section-body{padding:16px !important}
+  .section-header{padding:16px 16px 0 !important}
+  /* Force container constraints */
+  .content{max-width:100% !important;overflow-x:hidden !important}
+  section{max-width:100% !important;overflow:hidden !important}
+  /* Fix footer spacing on mobile - FORCE with !important */
+  footer{padding:4px 16px !important}
+  /* Fix contact section overflow - FORCE with !important */
+  .contact-grid{grid-template-columns:1fr !important;gap:12px !important;max-width:100% !important;overflow:hidden !important}
+  .contact-info{max-width:100% !important;overflow:hidden !important}
+  .ci-item{max-width:100% !important;overflow:hidden !important;word-wrap:break-word !important}
+  /* Fix form overflow - FORCE with !important */
+  form{max-width:100% !important;overflow:hidden !important}
+  form input, form textarea{max-width:100% !important;box-sizing:border-box !important}
+  /* Fix form grid layout - FORCE with !important */
+  form>div:first-child{display:grid !important;grid-template-columns:1fr !important;gap:12px !important;max-width:100% !important;overflow:hidden !important}
+  form input[type="email"]{width:100% !important;max-width:100% !important;min-width:0 !important;overflow:hidden !important}
+  form input[name="name"], form input[name="email"]{width:100% !important;max-width:100% !important;min-width:0 !important;overflow:hidden !important}
+  /* Fix view button on mobile - FORCE with !important */
+  .view-btn{font-size:12px !important;padding:9px 11px !important}
+  /* Ensure proper section spacing on mobile - FORCE with !important */
+  .about-grid .card{margin-bottom:16px !important}
+  .grid-2 .card{margin-bottom:16px !important}
+  .card:last-child{margin-bottom:0 !important}
+}
+/* Additional mobile improvements for very small screens - FORCE with !important */
+@media (max-width:480px){
+  .app{grid-template-columns:1fr !important;padding-bottom:40px !important}
+  .sidebar{width:100% !important;padding:16px 12px !important;margin-bottom:16px !important}
+  /* Force hide sidebar navigation on very small mobile - ULTRA FORCE */
+  .sidebar .nav{display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;overflow:hidden !important;position:absolute !important;left:-9999px !important;pointer-events:none !important;user-select:none !important}
+  .sidebar .nav *{display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;overflow:hidden !important;position:absolute !important;left:-9999px !important;pointer-events:none !important;user-select:none !important}
+  /* Hide content navigation on very small mobile */
+  .content-nav{display:none !important}
+  .content{padding:12px 12px 60px !important;max-width:100% !important;overflow-x:hidden !important}
+  .content-nav a{padding:6px 8px !important;font-size:12px !important;min-width:auto !important;flex-shrink:0 !important}
+  .stats{grid-template-columns:repeat(3,1fr) !important;gap:6px !important;max-width:100% !important;overflow:hidden !important}
+  .stat{padding:8px 6px !important;min-width:0 !important;overflow:hidden !important}
+  .stat .num{font-size:18px !important}
+  .stat .label{font-size:10px !important}
+  .section-body{padding:12px !important}
+  .section-header{padding:12px 12px 0 !important}
+  .section-title{font-size:20px !important}
+  .section-sub{font-size:12px !important}
+  /* Fix contact section on very small screens - FORCE with !important */
+  .contact-grid{gap:8px !important}
+  .contact-info{gap:8px !important}
+  .ci-item{padding:8px !important;gap:6px !important}
+  .ci-icon{width:28px !important;height:28px !important}
+  .ci-item>div:last-child{font-size:12px !important}
+  /* Fix form on very small screens - FORCE with !important */
+  form input, form textarea{padding:8px !important;font-size:14px !important}
+  form .btn{padding:8px 12px !important;font-size:13px !important}
+  /* Fix form grid on very small screens - FORCE with !important */
+  form>div:first-child{gap:8px !important}
+  form input[type="email"], form input[name="name"], form input[name="email"]{width:100% !important;max-width:100% !important;min-width:0 !important;overflow:hidden !important;box-sizing:border-box !important}
+  /* Fix view button on very small screens - FORCE with !important */
+  .view-btn{font-size:11px !important;padding:8px 10px !important}
+}
+.icon-btn svg{width:16px;height:16px}
+.sidebar-utils{display:flex;justify-content:center;align-items:center;gap:8px;margin:10px 0 4px}
+.theme-switch{position:relative;display:inline-grid;grid-auto-flow:column;align-items:center;gap:8px;height:32px;width:72px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:var(--surface-2);color:var(--text);cursor:pointer}
+.sidebar-utils .icon-btn{width:32px;height:32px;min-width:32px;min-height:32px}
+.theme-switch .ts-icons{display:grid;grid-auto-flow:column;gap:6px;align-items:center;justify-content:center}
+.theme-switch .ts-icons svg{width:14px;height:14px;opacity:.85}
+.theme-switch .ts-knob{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:999px;background:var(--surface);border:1px solid rgba(255,255,255,.12);box-shadow:0 2px 6px rgba(0,0,0,.25);transition:left .2s ease}
+body[data-theme="light"] .theme-switch .ts-knob{left:43px}
+.sb-list{width:100%;display:grid;gap:10px;margin-top:8px}
+.sb-item{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:center;background:var(--surface-2);padding:9px 12px;border-radius:10px}
+.sb-icon{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:var(--surface);color:var(--accent);border:1px solid rgba(255,255,255,.12)}
+.sb-icon svg{width:14px;height:14px}
+.sb-item>div:last-child{font-size:14px;line-height:1.45;overflow-wrap:anywhere}
+.content{padding:36px 36px 80px;max-width:var(--content-max)}
+section{margin-bottom:var(--section-gap);background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.section-header{display:flex;align-items:center;gap:12px;padding:22px 22px 0}
+.section-title{font-size:22px;font-weight:800}
+.section-sub{color:var(--muted);font-size:13px}
+.section-body{padding:22px}
+.card,
+.work-card,
+.btn{
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+}
+.card:hover,
+.work-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px rgba(0,0,0,.4);
+}
+[data-reveal]{
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+[data-reveal].is-visible{
+  opacity:1;
+  transform:none;
+}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--surface-2);border-radius:12px;padding:16px}
+.card ul{margin:0;padding-left:18px;display:grid;gap:8px}
+.card ul li{list-style:none;position:relative;padding-left:22px;color:var(--text)}
+.card ul li::before{content:"";position:absolute;left:0;top:8px;width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent))}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.stat{background:var(--surface);border-radius:12px;padding:16px;text-align:center}
+.stat .num{font-weight:900;font-size:28px;letter-spacing:.4px;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .label{color:var(--muted);font-size:12px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.service-icon{
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  margin-bottom:10px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  color:#0b0f14;
+}
+.service-icon svg{
+  width:18px;
+  height:18px;
+}
+.timeline{position:relative;display:grid;gap:12px}
+.tl-item{position:relative;border-left:2px solid rgba(255,255,255,.1);padding:10px 12px 10px 16px}
+.tl-item::before{content:"";position:absolute;left:-6px;top:14px;width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));box-shadow:0 0 0 3px rgba(0,224,255,.16)}
+.tl-period{color:var(--muted);font-size:12px;font-weight:600}
+.tl-title{font-weight:800;margin-top:2px}
+.tl-place{color:var(--muted);font-size:13px}
+.skill{margin:12px 0}
+.skill-head{display:flex;justify-content:space-between;font-weight:600;font-size:13px}
+.bar{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:inherit}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.filter-btn{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:var(--surface-2);color:var(--text);cursor:pointer;font-weight:600}
+.filter-btn.active{background:linear-gradient(90deg,rgba(0,224,255,.18),rgba(138,125,255,.18));border-color:transparent}
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:768px){.work-grid{grid-template-columns:1fr}}
+.work-card{background:var(--surface-2);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.work-card img{width:100%;height:auto;object-fit:contain;background:var(--surface)}
+.work-body{padding:14px;display:grid;gap:8px}
+.work-title{font-weight:800}
+.work-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:11px;padding:6px 8px;background:var(--surface);border-radius:999px;color:var(--muted);border:1px solid rgba(255,255,255,.08)}
+.view-btn{text-decoration:none;font-weight:700;color:#0b0f14;background:linear-gradient(135deg,var(--primary),var(--accent));padding:10px 12px;border-radius:10px;text-align:center}
+.pagination{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pagination button{height:36px;min-width:36px;padding:0 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:var(--surface-2);color:var(--text);cursor:pointer}
+.pagination button.is-active{background:linear-gradient(135deg,var(--primary),var(--accent));color:#0a0a0a;font-weight:800;border-color:transparent}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-info{display:grid;gap:12px}
+.ci-item{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center;background:var(--surface-2);padding:12px;border-radius:12px}
+.ci-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:var(--surface);color:var(--accent);border:1px solid rgba(255,255,255,.12)}
+footer{text-align:center;color:var(--muted);padding:4px 24px !important}
+@media (max-width:1100px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.content{padding:18px 16px 60px}.work-grid{grid-template-columns:1fr}}
+@media (max-height:740px){.avatar{width:110px;height:110px}.name{font-size:19px}.role{font-size:12px}.socials a{width:26px;height:26px}.socials a svg{width:12px;height:12px}.sb-item{grid-template-columns:24px 1fr;padding:7px 9px}.sb-icon{width:24px;height:24px}.sb-icon svg{width:12px;height:12px}.btn{padding:10px 12px}.nav a{padding:9px 10px}}
+@media (max-height:680px){.avatar{width:96px;height:96px}.profile{padding:14px}.sb-list{gap:6px}.btn{padding:9px 10px}.nav{padding:8px}.nav a{padding:8px 10px}}
+

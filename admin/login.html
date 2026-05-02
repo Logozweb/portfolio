@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Login</title>
+  <style>
+    :root{
+      --bg:#0b1220; --surface:#0f172a; --card:#0e1931; --border:#223148; --muted:#8fa2bf; --text:#e6edf7;
+      --accent:#4f9cff; --accent2:#22c55e; --btn:#4f9cff; --btnText:#031223;
+    }
+    *{box-sizing:border-box}
+    body { font-family: Inter, system-ui, sans-serif; min-height: 100dvh; margin:0; background: linear-gradient(180deg, var(--surface), var(--bg)); color: var(--text); display:grid; place-items:center; padding: 24px; }
+    .wrap { width: min(420px, 92vw); }
+    .brand { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom: 14px; }
+    .brand-mark { display:grid; place-items:center; width:42px; height:42px; border-radius:12px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color:#fff; font-weight:800; }
+    .brand-name { font-weight:800; letter-spacing:.4px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: 0 10px 28px rgba(0,0,0,.35); }
+    .card h2 { margin:0 0 8px 0; }
+    .sub { color: var(--muted); margin-bottom: 10px; }
+    label { display:block; margin-top: 12px; margin-bottom: 6px; font-weight: 600; }
+    input { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: #0b1326; color: var(--text); }
+    .actions { margin-top: 14px; display:flex; gap:10px; align-items:center; }
+    button { flex:1; height: 44px; border-radius: 12px; border: 1px solid #3a7fdb; background: var(--btn); color: var(--btnText); font-weight: 800; cursor:pointer; }
+    .error { color: #fca5a5; margin-top: 10px; min-height: 1.2em; }
+    .foot { margin-top: 10px; text-align:center; color: var(--muted); font-size: 14px; }
+  </style>
+  <script>
+    async function login(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = new URLSearchParams(new FormData(form));
+      const res = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, credentials: 'same-origin', body: data });
+      const j = await res.json();
+      if (j.ok) location.href = '/admin'; else document.getElementById('err').textContent = j.error || 'Login failed';
+    }
+    // if already logged in, redirect
+    (async()=>{ try{ const me = await fetch('/api/me', { credentials:'same-origin' }); const j = await me.json(); if(j.userId){ location.href='/admin'; } }catch(_){} })();
+  </script>
+  </head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark">PA</div>
+      <div class="brand-name">Portfolio Admin</div>
+    </div>
+    <form class="card" onsubmit="login(event)">
+      <h2>Welcome back</h2>
+      <div class="sub">Sign in to manage Works, Categories and more.</div>
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" required />
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" autocomplete="current-password" required />
+      <div class="actions">
+        <button type="submit">Sign in</button>
+      </div>
+      <div id="err" class="error"></div>
+    </form>
+  </div>
+</body>
+</html>
+
+
